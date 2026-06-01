@@ -1,14 +1,20 @@
+from database.data import transactions, products
+
+from rich import print
+
 from rich.table import Table
 
-from database.data import transactions, products
-from rich import print
-import datetime
-import csv
-import os
 from pathlib import Path
 
+import datetime
 
-def add_transaction(sku, quantity, date):
+import csv
+
+import os
+
+
+
+def add_transaction(sku, quantity, date):  #Menambahkan transaksi baru dengan validasi SKU, quantity, dan stock
     # Validasi SKU
     product = next((p for p in products if p["sku"] == sku), None)
     if not product:
@@ -42,8 +48,9 @@ def add_transaction(sku, quantity, date):
     transactions.append(transaction)
     print(f"[green]Transaction {transaction_id} added successfully.[/green]")
     print(f"Amount: Rp {amount:,.0f}")
+    
 
-def view_transactions():
+def view_transactions():  #Menampilkan semua transaksi yang telah dilakukan
     if not transactions:
         print("[yellow]No transactions found.[/yellow]")
         return
@@ -59,7 +66,8 @@ def view_transactions():
         table.add_row(t["transaction_id"], t["sku"], str(t["quantity"]), t["date"], f"Rp {t['amount']:,.0f}")
     print(table)
 
-def delete_transaction():
+
+def delete_transaction():  # Menghapus transaksi berdasarkan ID
     transaction_id = input("Enter Transaction ID to delete: ")
     for i, t in enumerate(transactions):
         if t["transaction_id"] == transaction_id:
@@ -73,12 +81,12 @@ def delete_transaction():
     print(f"[red]Transaction ID {transaction_id} not found.[/red]")
 
 
-def saldo_transaction():
+def saldo_transaction():  #Menghitung total saldo dari semua transaksi yang telah dilakukan
     total_saldo = sum(t["amount"] for t in transactions)
     print(f"[green]Total Saldo: Rp {total_saldo:,.0f}[/green]")
 
 
-def laporan_transaction():
+def laporan_transaction():  #Menghasilkan laporan transaksi dalam format CSV dengan total saldo dan jumlah transaksi
     if not transactions:
         print("[red]No transactions to generate report.[/red]")
         return
@@ -147,4 +155,3 @@ def laporan_transaction():
         
     except Exception as e:
         print(f"[red]Error saat menyimpan report: {str(e)}[/red]")
-

@@ -1,17 +1,13 @@
-from services.statistic_service import (
-    best_selling_products,
-    discounted_products_sales,
-    low_stock_products,
-    revenue_chart
-)
+from services.statistic_service import (best_selling_products, discounted_products_sales, low_stock_products, revenue_chart)
+
 from rich import print
 
 
-def statistic_menu():
+def statistic_menu():  #Menu untuk menampilkan berbagai statistik toko seperti produk paling laku, penjualan produk diskon, produk dengan stock hampir habis, dan grafik omset penjualan
     while True:
         print("[bold blue]=+= STATISTIK TOKO[/bold blue] =+=")
-        print("[yellow]1. Tampilkan Semua Statistik[/yellow]")
-        print("[yellow]0. Kembali ke Menu Utama[/yellow]")
+        print("1. Tampilkan Semua Statistik")
+        print("0. Kembali ke Menu Utama")
         choice = input("Pilih Menu: ")
         
         if choice == "1":
@@ -33,7 +29,7 @@ def statistic_menu():
             print("-" * 60)
             revenue_chart()
         elif choice == "0":
-            print("Kembali ke Menu Utama...")
+            print("[green]Kembali ke Menu Utama...[/green]")
             break
         else:
             print("[red]Pilihan tidak valid. Silakan coba lagi.[/red]")

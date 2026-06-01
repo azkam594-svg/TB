@@ -1,9 +1,13 @@
 from database.data import transactions
+
 from services.transaction_service import add_transaction, view_transactions, saldo_transaction, laporan_transaction, delete_transaction
 
-def transaction_menu():
+from rich import print
+
+
+def transaction_menu(): #Menu untuk manage transactions
     while True:
-        print("=== Transaction Menu ===")
+        print("[bold blue]=+= Transaction Menu =+=[/bold blue]")
         print("1. Add Transaction")
         print("2. View Transactions")
         print("3. View Saldo")
@@ -29,7 +33,7 @@ def transaction_menu():
         elif choice == "5":
             laporan_transaction()
         elif choice == "0":
-            print("Returning to Main Menu...")
+            print("[green]Returning to Main Menu...[/green]")
             break
         else:
-            print("Invalid option. Please try again.")
+            print("[red]Invalid option. Please try again.[/red]")

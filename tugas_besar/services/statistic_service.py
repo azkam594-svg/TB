@@ -1,12 +1,18 @@
-import matplotlib.pyplot as plt
 from collections import defaultdict
+
 from database.data import products, transactions, promotions
+
 from rich import print
+
 from rich.table import Table
+
 from datetime import datetime
 
+import matplotlib.pyplot as plt
 
-def best_selling_products():
+
+
+def best_selling_products():  #Menampilkan product paling laku berdasarkan quantity terjual
     if not transactions:
         print("[yellow]Tidak ada data transaksi untuk ditampilkan.[/yellow]")
         return
@@ -47,8 +53,9 @@ def best_selling_products():
         )
     
     print(table)
+    
 
-def discounted_products_sales():
+def discounted_products_sales():  #Menampilkan penjualan product yang sedang diskon
     if not transactions:
         print("[yellow]Tidak ada data transaksi untuk ditampilkan.[/yellow]")
         return
@@ -102,7 +109,8 @@ def discounted_products_sales():
     
     print(table)
 
-def low_stock_products():
+
+def low_stock_products():  #Menampilkan product dengan stock hampir habis (threshold bisa disesuaikan)
     # Tentukan threshold untuk low stock (20% dari stock awal atau misal < 5)
     low_stock_threshold = 5
     
@@ -146,8 +154,9 @@ def low_stock_products():
         )
     
     print(table)
+    
 
-def revenue_chart():
+def revenue_chart():  #Menampilkan grafik omset penjualan per product (bar chart) dan proporsi penjualan (pie chart)
     if not transactions:
         print("[red]Tidak ada data transaksi untuk membuat grafik.[/red]")
         return

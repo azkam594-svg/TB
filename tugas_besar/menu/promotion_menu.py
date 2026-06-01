@@ -1,11 +1,13 @@
 from database.data import promotions, products
+
 from services.promotion_service import add_promotion, view_promotions, update_promotion, delete_promotion, search_promotions
 
-from rich import print
+from rich import print #styling output with rich library
 
-def promotion_menu():
+
+def promotion_menu():  #Menu untuk manage promotions
     while True:
-        print("=== Promotion Menu ===")
+        print("[bold blue]=+= Promotion Menu =+=[/bold blue]")
         print("1. Add Promotions")
         print("2. View Promotions")
         print("3. Update Promotions")
@@ -41,9 +43,9 @@ def promotion_menu():
             search_promotions()
         
         elif choice == "0":
-            print("Returning to Main Menu...")
+            print("[green]Returning to Main Menu...[/green]")
             break
         
         else:
-            print("Invalid option. Please try again.")
+            print("[red]Invalid option. Please try again.[/red]")
 

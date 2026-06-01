@@ -4,11 +4,11 @@ import menu.transaction_menu as transactions
 import menu.statistic_menu as statistics
 
 
-from rich import print
+from rich import print  #styling output with rich library
 
-def main():
+def main():  #Main menu untuk mengakses semua fitur aplikasi
     while True:
-        print("[blue]=+= APPLICATION STORE MANAGEMENT =+=[/blue]")
+        print("[blue]==+==+== APPLICATION STORE MANAGEMENT ==+==+==[/blue]")
         print("[yellow]1. Manage Products[/yellow]")
         print("[yellow]2. Manage Promotions[/yellow]")
         print("[yellow]3. Manage Transactions[/yellow]")

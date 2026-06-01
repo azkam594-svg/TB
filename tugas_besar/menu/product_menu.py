@@ -1,8 +1,11 @@
 from services.product_service import add_product, view_products, search_products, update_product, delete_product
-from rich import print
+
+from rich import print 
+
+
 def product_menu(): #Menu untuk manage products
     while True:
-        print("[bold blue][]= MANAGE PRODUCTS =[/bold blue]")
+        print("[bold blue]=+= MANAGE PRODUCTS =+=[/bold blue]")
         print("1. Add Product")
         print("2. View Products")
         print("3. Search Products")
@@ -31,7 +34,7 @@ def product_menu(): #Menu untuk manage products
             delete_product()
             
         elif choice == '0':
-            print("Returning to Main Menu...")
+            print("[green]Returning to Main Menu...[/green]")
             break
         else:
             print("[red]Invalid option. Please try again.[/red]")

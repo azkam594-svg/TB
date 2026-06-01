@@ -2,7 +2,9 @@ from database.data import products #Mengimpor daftar produk dari file data.py
 
 # Import Rich library untuk mempercantik tampilan output di terminal
 from rich.table import Table
+
 from rich.console import Console
+
 from rich import print
 
 

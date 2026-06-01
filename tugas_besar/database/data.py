@@ -41,6 +41,12 @@ transactions = [
     }
 ]
 
-statistics = {
-
-}
+statistics = [
+    {
+        "statistic_name": "Best Selling Products",
+        "data": [
+            {"sku": "P001", "product_name": "Laptop", "quantity_sold": 2, "total_revenue": 16000000},
+            {"sku": "P002", "product_name": "Mouse", "quantity_sold": 5, "total_revenue": 1000000}
+        ]
+    }
+]

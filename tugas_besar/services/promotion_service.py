@@ -2,11 +2,12 @@ from database.data import products, promotions
 
 # Import Rich library untuk mempercantik tampilan output di terminal
 from rich.table import Table
+
 from rich import print
 
 
-def add_promotion(sku, discount_percent):
 
+def add_promotion(sku, discount_percent): #Menambahkan promosi baru dengan validasi SKU dan diskon
     for product in products:
         if product["sku"] == sku:
 
@@ -37,7 +38,7 @@ def add_promotion(sku, discount_percent):
     print("Produk tidak ditemukan.")
 
 
-def view_promotions():
+def view_promotions():  #Menampilkan semua promosi yang tersedia dengan informasi produk terkait
     if not promotions:
         print("[yellow]Tidak ada promosi yang tersedia.[/yellow]")
         return
@@ -96,6 +97,7 @@ def delete_promotion():  #Menghapus promosi berdasarkan ID promosi
             return
 
     print(f"[red]No promotion found with SKU {sku}.[/red]")
+    
 
 def search_promotions():  #Mencari promosi berdasarkan nama produk atau ID promosi
     keyword = input("Enter product name or SKU to search: ")
