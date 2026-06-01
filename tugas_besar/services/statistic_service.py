@@ -7,8 +7,6 @@ from datetime import datetime
 
 
 def best_selling_products():
-
-    """Menampilkan product paling laku berdasarkan quantity terjual"""
     if not transactions:
         print("[yellow]Tidak ada data transaksi untuk ditampilkan.[/yellow]")
         return
@@ -51,7 +49,6 @@ def best_selling_products():
     print(table)
 
 def discounted_products_sales():
-    """Menampilkan penjualan product yang sedang diskon"""
     if not transactions:
         print("[yellow]Tidak ada data transaksi untuk ditampilkan.[/yellow]")
         return
@@ -106,7 +103,6 @@ def discounted_products_sales():
     print(table)
 
 def low_stock_products():
-    """Menampilkan product dengan stock hampir habis"""
     # Tentukan threshold untuk low stock (20% dari stock awal atau misal < 5)
     low_stock_threshold = 5
     
@@ -152,7 +148,6 @@ def low_stock_products():
     print(table)
 
 def revenue_chart():
-    """Menampilkan grafik omset penjualan menggunakan matplotlib"""
     if not transactions:
         print("[red]Tidak ada data transaksi untuk membuat grafik.[/red]")
         return
