@@ -29,11 +29,10 @@ def main():  #Main menu untuk mengakses semua fitur aplikasi
             statistics.statistic_menu()
             
         elif choice == '0':
-            print("Exiting the application. Goodbye!")
+            print("[yellow]Exiting the application. Goodbye![/yellow]")
             break
         else:
-            print("Invalid option. Please try again.")
-            
-            
+            print("[red]Invalid option. Please try again.[/red]")
+
 if __name__ == "__main__":
     main()  
