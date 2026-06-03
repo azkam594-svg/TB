@@ -197,24 +197,71 @@ def revenue_chart():  #Menampilkan grafik omset penjualan per product (bar chart
     ax1.yaxis.set_major_formatter(plt.FuncFormatter(lambda x, p: f'Rp {x/1e6:.1f}'))
     plt.setp(ax1.xaxis.get_majorticklabels(), rotation=45, ha='right')
     
-    # Grafik 2: Pie chart - Proporsi Penjualan
-    colors_pie = plt.cm.Set2(range(len(product_names)))
+    # Grafik 2: Pie chart - Proporsi Penjualan yang lebih rapi
+
+    threshold = 3  # produk dengan proporsi < 3% digabung ke "Lainnya"
+    total_revenue = sum(revenues)
+
+    pie_names = []
+    pie_revenues = []
+    other_revenue = 0
+
+    for name, revenue in zip(product_names, revenues):
+        percentage = (revenue / total_revenue) * 100
+
+        if percentage < threshold:
+            other_revenue += revenue
+        else:
+            pie_names.append(name)
+            pie_revenues.append(revenue)
+
+    if other_revenue > 0:
+        pie_names.append("Lainnya")
+        pie_revenues.append(other_revenue)
+
+    colors_pie = plt.cm.Set2(range(len(pie_names)))
+
+    def autopct_format(pct):
+        return f"{pct:.1f}%" if pct >= threshold else ""
+
     wedges, texts, autotexts = ax2.pie(
-        revenues, 
-        labels=product_names, 
-        autopct='%1.1f%%',
+        pie_revenues,
+        labels=None,  # label jangan ditaruh di pie
+        autopct=autopct_format,
         colors=colors_pie,
         startangle=90,
-        textprops={'fontsize': 10}
+        counterclock=False,
+        pctdistance=0.75,
+        wedgeprops={
+            "width": 0.45,        # bikin jadi donut chart
+            "edgecolor": "white"
+        },
+        textprops={
+            "fontsize": 9
+        }
     )
-    
-    # Format autopct untuk menampilkan nilai
+
     for autotext in autotexts:
-        autotext.set_color('white')
-        autotext.set_fontweight('bold')
+        autotext.set_color("white")
+        autotext.set_fontweight("bold")
         autotext.set_fontsize(9)
-    
-    ax2.set_title("Proporsi Penjualan", fontsize=14, fontweight='bold')
+
+    legend_labels = [
+        f"{name} - Rp{revenue:,.0f} ({(revenue / total_revenue) * 100:.1f}%)".replace(",", ".")
+        for name, revenue in zip(pie_names, pie_revenues)
+    ]
+
+    ax2.legend(
+        wedges,
+        legend_labels,
+        title="Produk",
+        loc="center left",
+        bbox_to_anchor=(1, 0.5),
+        fontsize=9
+    )
+
+    ax2.set_title("Proporsi Penjualan", fontsize=14, fontweight="bold")
+    ax2.axis("equal")
     
     plt.tight_layout()
     
